@@ -2,7 +2,7 @@
 <solution Name="Flashloader" target="8" version="2">
   <configuration Name="Debug" />
   <configuration Name="Release" />
-  <project Name="Ext. Flashloader">
+  <project Name="Flashloader">
     <configuration
       Name="Common"
       Target="Cortex-A5"

@@ -71,7 +71,7 @@ struct FlashDevice {
 
 struct FlashDevice const FlashDevice __attribute__ ((section ("DevDscr"))) = {
   0x0101,                         // Algo version. Must be == 0x0101
-  { "H750 Ext. W25Q256JV" },      // Flash device name
+  { "H750xx Ext. W25Q256JV" },      // Flash device name
   1,                              // Flash device type. Must be == 1
   0x90000000,                     // Flash base address
   0x02000000,                     // Total flash device size in Bytes

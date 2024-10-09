@@ -1,13 +1,13 @@
 Output/Release/Obj/Ext.\ Flashloader/system_stm32h7xx.o: \
- E:\Project\platformLearning\st\H750XB\H750_W25Q256JV\Core\Src\system_stm32h7xx.c \
+ D:\Software\STM32\H750XB\FlashLoader\Core\Src\system_stm32h7xx.c \
  Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
  Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h750xx.h \
  Drivers/CMSIS/Include/core_cm7.h \
- D:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/stdint.h \
- D:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/__SEGGER_RTL.h \
- D:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/__SEGGER_RTL_ConfDefaults.h \
- D:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/__SEGGER_RTL_Conf.h \
- D:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/__SEGGER_RTL_Arm_Conf.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/stdint.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/__SEGGER_RTL.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/__SEGGER_RTL_ConfDefaults.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/__SEGGER_RTL_Conf.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/__SEGGER_RTL_Arm_Conf.h \
  Drivers/CMSIS/Include/cmsis_version.h \
  Drivers/CMSIS/Include/cmsis_compiler.h Drivers/CMSIS/Include/cmsis_gcc.h \
  Drivers/CMSIS/Include/mpu_armv7.h \
@@ -17,9 +17,9 @@ Output/Release/Obj/Ext.\ Flashloader/system_stm32h7xx.o: \
  Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
  Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h \
  Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
- D:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/stddef.h \
- D:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/math.h \
- D:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/__SEGGER_RTL_FP.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/stddef.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/math.h \
+ C:/Program\ Files/SEGGER/SEGGER\ Embedded\ Studio\ 8.14a/include/__SEGGER_RTL_FP.h \
  Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h \
  Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h \
  Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio_ex.h \

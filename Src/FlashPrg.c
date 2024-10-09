@@ -66,7 +66,7 @@ Purpose : Implementation of RAMCode template
 // Only compile in functions that make sense to keep RAMCode as small as possible
 //
 #define SUPPORT_NATIVE_VERIFY         (0)   // Non-memory mapped flashes only. Flash cannot be read memory-mapped
-#define SUPPORT_NATIVE_READ_FUNCTION  (0)   // Non-memory mapped flashes only. Flash cannot be read memory-mapped
+#define SUPPORT_NATIVE_READ_FUNCTION  (1)   // Non-memory mapped flashes only. Flash cannot be read memory-mapped
 #define SUPPORT_ERASE_CHIP            (0)   // To potentially speed up production programming: Erases whole flash bank / chip with special command
 #define SUPPORT_TURBO_MODE            (1)   // Currently available for Cortex-M only
 #define SUPPORT_SEGGER_OPEN_ERASE     (1)   // Flashes with uniform sectors only. Speed up erase because 1 OFL call may erase multiple sectors
@@ -202,9 +202,13 @@ int Init(U32 Addr, U32 Freq, U32 Func) {
   (void)Func;
   (void)_RestoreInfo;
 
+  SystemInit();
+  SystemClock_Config();
   MX_QUADSPI_Init();
   MX_IWDG1_Init();
-  QSPI_W25Qxx_Init(); // 初始化W25Q64
+  if (QSPI_W25Qxx_Init() != QSPI_W25Qxx_OK) // 初始化W25Q64
+    return 1;
+
   _FeedWatchdog();
 
   //
@@ -276,15 +280,13 @@ int EraseSector(U32 SectorAddr) {
   // Erase sector code
   //
   int8_t QSPI_Status;
-  SectorAddr -= 0x90000000;
+  SectorAddr -= W25Qxx_Mem_Addr;
 
   _FeedWatchdog();
 
   QSPI_Status = QSPI_W25Qxx_BlockErase_64K(SectorAddr); // 擦除64K字节
   if (QSPI_Status != QSPI_W25Qxx_OK)
-    return -1;
-
-  _FeedWatchdog();
+    return 1;
 
   return 0;
 }
@@ -310,33 +312,14 @@ int EraseSector(U32 SectorAddr) {
 *    (2) Use "noinline" attribute to make sure that function is never inlined and label not accidentally removed by linker from ELF file.
 */
 int ProgramPage(U32 DestAddr, U32 NumBytes, U8 *pSrcBuff) {
-  U32 NumPages;
-  U32 NumBytesAtOnce;
   int r;
 
-  r = -1;
   //
   // RAMCode is able to program multiple pages
   //
-  NumPages = NumBytes >> PAGE_SIZE_SHIFT;
-  //
-  // Program page-wise
-  //
-  if (NumPages)
-  {
-    r = 0;
-    do
-    {
-      NumBytesAtOnce = (1 << PAGE_SIZE_SHIFT);
-      _FeedWatchdog();
-      //
-      // Program one page
-      //
-      r = QSPI_W25Qxx_WritePage(pSrcBuff, DestAddr, NumBytesAtOnce);
-      if (r != 0)
-        return r;
-    } while (--NumPages);
-  }
+  DestAddr -= W25Qxx_Mem_Addr;
+  r = QSPI_W25Qxx_WriteBuffer(pSrcBuff, DestAddr, NumBytes);
+
   return r;
 }
 
@@ -362,27 +345,30 @@ int ProgramPage(U32 DestAddr, U32 NumBytes, U8 *pSrcBuff) {
 *    (2) Use "noinline" attribute to make sure that function is never inlined and label not accidentally removed by linker from ELF file.
 */
 int BlankCheck(U32 Addr, U32 NumBytes, U8 BlankData) {
-  U8 Data[65536];
-  volatile U8 *pData = Data;
-  uint32_t DataNum;
+  static U8 Data[4096];
+  U32 DataNum;
   int r;
 
-  Addr -= 0x90000000;
-  NumBytes = (NumBytes + 65535) & ~65535; // Adjust size for 65536 bytes
+  Addr -= W25Qxx_Mem_Addr;
+  NumBytes = (NumBytes + 4095) & ~4095; // Adjust size for 4096 bytes
   NumBytes >>= 16;
   do
   {
-    DataNum = 65536;
+    DataNum = 4096;
     _FeedWatchdog();
-    r = QSPI_W25Qxx_ReadBuffer(Data, Addr, 65536);
-    do
+    r = QSPI_W25Qxx_ReadBuffer(Data, Addr, 4096);
+    Addr += 4096;
+    for (U32 i = 0; i < 4096; i++)
     {
-      if (*pData++ != BlankData)
+      if (Data[i] != BlankData)
         return 1;
-    } while (--DataNum);
+    }
   } while (--NumBytes);
 
   return 0;
+
+  _FeedWatchdog();
+  return 1;
 }
 
 /*********************************************************************
@@ -541,7 +527,11 @@ int SEGGER_OPEN_Read(U32 Addr, U32 NumBytes, U8 *pDestBuff) {
   // Read function
   // Add your code here...
   //
-  //_FeedWatchdog();
+  _FeedWatchdog();
+
+  if (QSPI_W25Qxx_ReadBuffer(pDestBuff, Addr - W25Qxx_Mem_Addr, NumBytes) != QSPI_W25Qxx_OK)
+    return -1;
+
   return NumBytes;
 }
 #endif
