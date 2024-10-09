@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "SYSTEMcONFIG.C": "cpp",
+        "iwdg.h": "c"
+    }
+}

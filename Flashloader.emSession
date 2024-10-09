@@ -1,0 +1,50 @@
+<!DOCTYPE CrossStudio_Session_File>
+<session>
+ <Bookmarks/>
+ <Breakpoints groups="Breakpoints" active_group="Breakpoints"/>
+ <ExecutionProfileWindow/>
+ <FrameBuffer/>
+ <Memory1/>
+ <Memory2/>
+ <Memory3/>
+ <Memory4/>
+ <Project>
+  <ProjectSessionItem path="Flashloader"/>
+  <ProjectSessionItem path="Flashloader;Ext. Flashloader"/>
+  <ProjectSessionItem path="Flashloader;Ext. Flashloader;Drivers"/>
+  <ProjectSessionItem path="Flashloader;Ext. Flashloader;Setup"/>
+  <ProjectSessionItem path="Flashloader;Ext. Flashloader;Src"/>
+ </Project>
+ <Register1/>
+ <Register2/>
+ <Register3/>
+ <Register4/>
+ <Threads>
+  <ThreadsWindow showLists=""/>
+ </Threads>
+ <TraceWindow>
+  <Trace enabled="Yes"/>
+ </TraceWindow>
+ <Watch1>
+  <Watches active="1" update="Never"/>
+ </Watch1>
+ <Watch2>
+  <Watches active="0" update="Never"/>
+ </Watch2>
+ <Watch3>
+  <Watches active="0" update="Never"/>
+ </Watch3>
+ <Watch4>
+  <Watches active="0" update="Never"/>
+ </Watch4>
+ <Files>
+  <SessionOpenFile windowGroup="DockEditLeft" x="2" y="99" useTextEdit="1" path="Src/FlashDev.c" left="0" selected="1" top="62" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="0" useTextEdit="1" path="Src/FlashOS.h" left="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="4" y="501" useTextEdit="1" path="Src/FlashPrg.c" left="0" top="475" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="1" y="25" useTextEdit="1" path="Drivers/User/SystemConfig.c" left="0" top="0" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="0" y="2168" useTextEdit="1" path="Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h750xx.h" left="0" top="2284" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="7" y="45" useTextEdit="1" path="Core/Src/iwdg.c" left="0" top="14" codecName="Default"/>
+  <SessionOpenFile windowGroup="DockEditLeft" x="8" y="75" useTextEdit="1" path="Core/Src/quadspi.c" left="0" top="124" codecName="Default"/>
+ </Files>
+ <EMStudioWindow activeProject="Flashloader" fileDialogDefaultFilter="*.c" autoConnectTarget="J-Link" buildConfiguration="Release" sessionSettings="" debugSearchFileMap="" fileDialogInitialDirectory="E:/Project/platformLearning/st/H750XB/H750_W25Q256JV/Drivers/User" debugSearchPath="" autoConnectCapabilities="3199"/>
+</session>
